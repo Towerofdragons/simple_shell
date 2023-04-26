@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 
 char *get_env_key(char *key, program_data *data)
 {
