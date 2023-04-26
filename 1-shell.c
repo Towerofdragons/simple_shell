@@ -5,9 +5,12 @@
 /**
  * main - simple UNIX command line interpreter
  *
+ * @argc: argument count
+ * @argv: argument vector
+ *
  * Return: 0 on success, 1 on failure
  */
-int main(void)
+int main(int argc, char **argv)
 {
 char *cmd = NULL;
 size_t cmd_len = 0;
@@ -16,6 +19,7 @@ int i;
 pid_t pid;
 int status;
 
+(void)argc;
 while (1)
 {
 write(STDOUT_FILENO, "$ ", 2);
@@ -38,8 +42,15 @@ pid = fork();
 if (pid == 0)
 {
 if (execve(args[0], args, NULL) == -1)
-perror("Error");
-exit(0);
+{
+write(STDERR_FILENO, argv[0], strlen(argv[0]));
+write(STDERR_FILENO, ": ", 2);
+write(STDERR_FILENO, "1", 1);
+write(STDERR_FILENO, ": ", 2);
+write(STDERR_FILENO, args[0], strlen(args[0]));
+write(STDERR_FILENO, ": not found\n", 12);
+exit(127);
+}
 }
 else
 wait(&status);
