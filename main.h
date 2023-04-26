@@ -15,6 +15,6 @@ char *search_path(char *cmd);
 int read_input(char *cmd);
 void tokenize_input(char *cmd, char **args);
 void execute_command(char **args, char *full_path);
-
+void execute_pipe(char **args1, char **args2);
 
 #endif
