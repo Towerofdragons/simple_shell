@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 
 /**
  * builtins_list - search for match and execute the associate builtin
@@ -8,8 +8,8 @@
  **/
 int builtins_list(data_of_program *data)
 {
-	int iterator;
-	builtins options[] = {
+	int i;
+	builtins x[] = {
 		{"exit", builtin_exit},
 		{"help", builtin_help},
 		{"cd", builtin_cd},
@@ -21,7 +21,7 @@ int builtins_list(data_of_program *data)
 	};
 
 /*walk through the structure*/
-	for (iterator = 0; options[iterator].builtin != NULL; iterator++)
+	for (i = 0; x[i].builtin != NULL; i++)
 	{
 /*if there is a match between the given command and a builtin,*/
 		if (str_compare(options[iterator].builtin, data->command_name, 0))
