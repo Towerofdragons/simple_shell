@@ -22,10 +22,10 @@ int status;
 
 while (1)
 {
-printf("$ ");
+write(STDOUT_FILENO, "$ ", 2);
 if (getline(&cmd, &cmd_len, stdin) == -1)
 {
-printf("\n");
+write(STDOUT_FILENO, "\n", 1);
 exit(0);
 }
 cmd[strlen(cmd) - 1] = '\0';
