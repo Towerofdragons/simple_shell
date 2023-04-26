@@ -1,78 +1,72 @@
 #include "main.h"
 
-int builtin_env(data_of_program *data)
+int env_cmd(program_data *data)
 {
-	int i;
-	char cpname[50] = {'\0'};
-	char *var_copy = NULL;
+    int i;
+    char cpname[50] = {'\0'};
+    char *var_copy = NULL;
 
-	
-	if (data->tokens[1] == NULL)
-		print_environ(data);
-	else
-	{
-		for (i = 0; data->tokens[1][i]; i++)
-		{
-			if (data->tokens[1][i] == '=')
-			{
-				var_copy = str_duplicate(env_get_key(cpname, data));
-				if (var_copy != NULL)
-					env_set_key(cpname, data->tokens[1] + i + 1, data);
+    if (data->tokens[1] == NULL)
+        print_env_vars(data);
+    else
+    {
+        for (i = 0; data->tokens[1][i]; i++)
+        {
+            if (data->tokens[1][i] == '=')
+            {
+                var_copy = str_dup(get_env_key(cpname, data));
+                if (var_copy != NULL)
+                    set_env_key(cpname, data->tokens[1] + i + 1, data);
 
-				
-				print_environ(data);
-				if (env_get_key(cpname, data) == NULL)
-				{
-					_print(data->tokens[1]);
-					_print("\n");
-				}
-				else
-				{
-					env_set_key(cpname, var_copy, data);
-					free(var_copy);
-				}
-				return (0);
-			}
-			cpname[i] = data->tokens[1][i];
-		}
-		errno = 2;
-		perror(data->command_name);
-		errno = 127;
-	}
-	return (0);
+                print_env_vars(data);
+                if (get_env_key(cpname, data) == NULL)
+                {
+                    print_str(data->tokens[1]);
+                    print_str("\n");
+                }
+                else
+                {
+                    set_env_key(cpname, var_copy, data);
+                    free(var_copy);
+                }
+                return (0);
+            }
+            cpname[i] = data->tokens[1][i];
+        }
+        errno = 2;
+        perror(data->cmd_name);
+        errno = 127;
+    }
+    return (0);
 }
 
-
-int builtin_set_env(data_of_program *d)
+int set_env_cmd(program_data *d)
 {
-	
-	if (d->tokens[1] == NULL || d->tokens[2] == NULL)
-		return (0);
-	if (d->tokens[3] != NULL)
-	{
-		errno = E2BIG;
-		perror(d->command_name);
-		return (5);
-	}
+    if (d->tokens[1] == NULL || d->tokens[2] == NULL)
+        return (0);
+    if (d->tokens[3] != NULL)
+    {
+        errno = E2BIG;
+        perror(d->cmd_name);
+        return (5);
+    }
 
-	env_set_key(d->tokens[1], d->tokens[2], d);
+    set_env_key(d->tokens[1], d->tokens[2], d);
 
-	return (0);
+    return (0);
 }
 
-
-int builtin_unset_env(data_of_program *d)
+int unset_env_cmd(program_data *d)
 {
-	
-	if (d->tokens[1] == NULL)
-		return (0);
-	if (d->tokens[2] != NULL)
-	{
-		errno = E2BIG;
-		perror(d->command_name);
-		return (5);
-	}
-	env_remove_key(d->tokens[1], d);
+    if (d->tokens[1] == NULL)
+        return (0);
+    if (d->tokens[2] != NULL)
+    {
+        errno = E2BIG;
+        perror(d->cmd_name);
+        return (5);
+    }
+    remove_env_key(d->tokens[1], d);
 
-	return (0);
+    return (0);
 }
