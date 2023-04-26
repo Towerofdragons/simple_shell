@@ -3,16 +3,18 @@
 
 int print_alias(data_of_program *data, char *alias)
 {
-	int i, j, alias_length;
+	int i;
+	int j;
+	int length;
 	char buff[250] = {'\0'};
 
 	if (data->alias_list)
 	{
-		alias_length = str_length(alias);
+		length = str_length(alias);
 		for (i = 0; data->alias_list[i]; i++)
 		{
-			if (!alias || (str_compare(data->alias_list[i], alias, alias_length)
-				&&	data->alias_list[i][alias_length] == '='))
+			if (!alias || (str_compare(data->alias_list[i], alias, length)
+				&&	data->alias_list[i][length] == '='))
 			{
 				for (j = 0; data->alias_list[i][j]; j++)
 				{
@@ -35,20 +37,20 @@ int print_alias(data_of_program *data, char *alias)
 
 char *get_alias(data_of_program *data, char *name)
 {
-	int i, alias_length;
+	int i, length;
 
 	
 	if (name == NULL || data->alias_list == NULL)
 		return (NULL);
 
-	alias_length = str_length(name);
+	length = str_length(name);
 
 	for (i = 0; data->alias_list[i]; i++)
 	{
-		if (str_compare(name, data->alias_list[i], alias_length) &&
-			data->alias_list[i][alias_length] == '=')
+		if (str_compare(name, data->alias_list[i], length) &&
+			data->alias_list[i][length] == '=')
 		{/* returns the value of the key NAME=  when find it */
-			return (data->alias_list[i] + alias_length + 1);
+			return (data->alias_list[i] + length + 1);
 		}
 	}
 	
