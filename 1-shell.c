@@ -3,12 +3,13 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/wait.h>
-#define MAX_CMD_LEN 1024
+
 #define MAX_ARG_LEN 64
 
 int main(void)
 {
-    char cmd[MAX_CMD_LEN];
+    char *cmd = NULL;
+    size_t cmd_len = 0;
     char *args[MAX_ARG_LEN];
     int i;
     pid_t pid;
@@ -17,7 +18,7 @@ int main(void)
     while (1)
     {
         printf("$ ");
-        if (fgets(cmd, MAX_CMD_LEN, stdin) == NULL)
+        if (getline(&cmd, &cmd_len, stdin) == -1)
         {
             printf("\n");
             exit(0);
@@ -42,5 +43,6 @@ int main(void)
         else
             wait(&status);
     }
+    free(cmd);
     return (0);
 }
