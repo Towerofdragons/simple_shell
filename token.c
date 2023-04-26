@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 /**
  * _strtok - separates strings with delimiters
  * @line: It´s pointer to array we receive in getline.
@@ -7,36 +7,37 @@
 */
 char *_strtok(char *line, char *delim)
 {
-	int j;
-	static char *str;
-	char *copystr;
+	int i;
+	char *copy;
+	static char *s;
+	
 
 	if (line != NULL)
-		str = line;
-	for (; *str != '\0'; str++)
+		s = line;
+	for (; *s != '\0'; str++)
 	{
-		for (j = 0; delim[j] != '\0'; j++)
+		for (i = 0; delim[i] != '\0'; i++)
 		{
-			if (*str == delim[j])
+			if (*str == delim[i])
 			break;
 		}
-		if (delim[j] == '\0')
+		if (delim[i] == '\0')
 			break;
 	}
-	copystr = str;
-	if (*copystr == '\0')
+	copy = s;
+	if (*copy == '\0')
 		return (NULL);
-	for (; *str != '\0'; str++)
+	for (; *s != '\0'; s++)
 	{
-		for (j = 0; delim[j] != '\0'; j++)
+		for (i = 0; delim[i] != '\0'; i++)
 		{
-			if (*str == delim[j])
+			if (*s == delim[i])
 			{
-				*str = '\0';
-				str++;
-				return (copystr);
+				*s = '\0';
+				s++;
+				return (copy);
 			}
 		}
 	}
-	return (copystr);
+	return (copy);
 }
