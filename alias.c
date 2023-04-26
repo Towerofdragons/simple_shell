@@ -1,99 +1,91 @@
 #include "main.h"
 
-
-int print_alias(data_of_program *data, char *alias)
+int print_alias_value(program_data *data, char *alias)
 {
-	int i;
-	int j;
-	int length;
-	char buff[250] = {'\0'};
+    int i;
+    int j;
+    int length;
+    char buff[250] = {'\0'};
 
-	if (data->alias_list)
-	{
-		length = str_length(alias);
-		for (i = 0; data->alias_list[i]; i++)
-		{
-			if (!alias || (str_compare(data->alias_list[i], alias, length)
-				&&	data->alias_list[i][length] == '='))
-			{
-				for (j = 0; data->alias_list[i][j]; j++)
-				{
-					buff[j] = data->alias_list[i][j];
-					if (data->alias_list[i][j] == '=')
-						break;
-				}
-				buff[j + 1] = '\0';
-				buffer_add(buff, "'");
-				buffer_add(buff, data->alias_list[i] + j + 1);
-				buffer_add(buff, "'\n");
-				_print(buff);
-			}
-		}
-	}
+    if (data->alias_arr)
+    {
+        length = str_len(alias);
+        for (i = 0; data->alias_arr[i]; i++)
+        {
+            if (!alias || (str_cmp(data->alias_arr[i], alias, length)
+                && data->alias_arr[i][length] == '='))
+            {
+                for (j = 0; data->alias_arr[i][j]; j++)
+                {
+                    buff[j] = data->alias_arr[i][j];
+                    if (data->alias_arr[i][j] == '=')
+                        break;
+                }
+                buff[j + 1] = '\0';
+                add_to_buffer(buff, "'");
+                add_to_buffer(buff, data->alias_arr[i] + j + 1);
+                add_to_buffer(buff, "'\n");
+                print_str(buff);
+            }
+        }
+    }
 
-	return (0);
+    return (0);
 }
 
-
-char *get_alias(data_of_program *data, char *name)
+char *get_alias_value(program_data *data, char *name)
 {
-	int i, length;
+    int i, length;
 
-	
-	if (name == NULL || data->alias_list == NULL)
-		return (NULL);
+    if (name == NULL || data->alias_arr == NULL)
+        return (NULL);
 
-	length = str_length(name);
+    length = str_len(name);
 
-	for (i = 0; data->alias_list[i]; i++)
-	{
-		if (str_compare(name, data->alias_list[i], length) &&
-			data->alias_list[i][length] == '=')
-		{/* returns the value of the key NAME=  when find it */
-			return (data->alias_list[i] + length + 1);
-		}
-	}
-	
-	return (NULL);
+    for (i = 0; data->alias_arr[i]; i++)
+    {
+        if (str_cmp(name, data->alias_arr[i], length) &&
+            data->alias_arr[i][length] == '=')
+        {
+            return (data->alias_arr[i] + length + 1);
+        }
+    }
 
+    return (NULL);
 }
 
-
-int set_alias(char *alias_string, data_of_program *data)
+int set_alias_value(char *alias_str, program_data *data)
 {
-	int i, j;
-	char buff[250] = {'0'}, *temp = NULL;
+    int i, j;
+    char buff[250] = {'0'}, *temp = NULL;
 
-	
-	if (alias_string == NULL ||  data->alias_list == NULL)
-		return (1);
-	
-	for (i = 0; alias_string[i]; i++)
-		if (alias_string[i] != '=')
-			buff[i] = alias_string[i];
-		else
-		{
-			temp = get_alias(data, alias_string + i + 1);
-			break;
-		}
+    if (alias_str == NULL || data->alias_arr == NULL)
+        return (1);
 
-	
-	for (j = 0; data->alias_list[j]; j++)
-		if (str_compare(buff, data->alias_list[j], i) &&
-			data->alias_list[j][i] == '=')
-		{
-			free(data->alias_list[j]);
-			break;
-		}
+    for (i = 0; alias_str[i]; i++)
+        if (alias_str[i] != '=')
+            buff[i] = alias_str[i];
+        else
+        {
+            temp = get_alias_value(data, alias_str + i + 1);
+            break;
+        }
 
-	
-	if (temp)
-	{
-		buffer_add(buff, "=");
-		buffer_add(buff, temp);
-		data->alias_list[j] = str_duplicate(buff);
-	}
-	else 
-		data->alias_list[j] = str_duplicate(alias_string);
-	return (0);
+    for (j = 0; data->alias_arr[j]; j++)
+        if (str_cmp(buff, data->alias_arr[j], i) &&
+            data->alias_arr[j][i] == '=')
+        {
+            free(data->alias_arr[j]);
+            break;
+        }
+
+    if (temp)
+    {
+        add_to_buffer(buff, "=");
+        add_to_buffer(buff, temp);
+        data->alias_arr[j] = str_dup(buff);
+    }
+    else
+        data->alias_arr[j] = str_dup(alias_str);
+    return (0);
 }
