@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 
 
 int print_alias(data_of_program *data, char *alias)
