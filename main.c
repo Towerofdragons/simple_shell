@@ -10,7 +10,7 @@ int main(void)
 	char cmd[MAX_LINE];
 	char *args[MAX_LINE / 2 + 1];
 	char *full_path;
-
+        char *cmd_name;
 	while (1)
 	{
 		if (read_input(cmd))
@@ -21,8 +21,17 @@ int main(void)
 			break;
 
 	tokenize_input(cmd, args);
-	full_path = search_path(args[0]);
-	if (full_path == NULL)
+	cmd_name = strrchr(args[0], '/');
+        if (cmd_name != NULL)
+        {
+            cmd_name++; 
+        }
+        else
+        {
+            cmd_name = args[0];
+        }
+	full_path = search_path(cmd_name);
+		if (full_path == NULL)
 	{
 		fprintf(stderr, "%s: command not found\n", args[0]);
 		continue;
