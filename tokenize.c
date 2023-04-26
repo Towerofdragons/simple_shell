@@ -2,7 +2,7 @@
 
 void tokenize_input(program_data *data)
 {
-    char *delimiter = " \t";
+    char *d = " \t";
     int i, j, counter = 2, length;
 
     length = str_len(data->input_str);
@@ -14,9 +14,9 @@ void tokenize_input(program_data *data)
 
     for (i = 0; data->input_str[i]; i++)
     {
-        for (j = 0; delimiter[j]; j++)
+        for (j = 0; d[j]; j++)
         {
-            if (data->input_str[i] == delimiter[j])
+            if (data->input_str[i] == d[j])
                 counter++;
         }
     }
@@ -28,10 +28,10 @@ void tokenize_input(program_data *data)
         exit(errno);
     }
     i = 0;
-    data->tokens[i] = str_dup(_strtok(data->input_str, delimiter));
+    data->tokens[i] = str_dup(_strtok(data->input_str, d));
     data->cmd_name = str_dup(data->tokens[0]);
     while (data->tokens[i++])
     {
-        data->tokens[i] = str_dup(_strtok(NULL, delimiter));
+        data->tokens[i] = str_dup(_strtok(NULL, d));
     }
 }
