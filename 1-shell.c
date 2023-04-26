@@ -45,10 +45,7 @@ if (execve(args[0], args, NULL) == -1)
 {
 write(STDERR_FILENO, argv[0], strlen(argv[0]));
 write(STDERR_FILENO, ": ", 2);
-write(STDERR_FILENO, "1", 1);
-write(STDERR_FILENO, ": ", 2);
-write(STDERR_FILENO, args[0], strlen(args[0]));
-write(STDERR_FILENO, ": not found\n", 12);
+write(STDERR_FILENO, "No such file or directory\n", 26);
 exit(127);
 }
 }
