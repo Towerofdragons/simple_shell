@@ -5,7 +5,7 @@ int execute_cmd(program_data *d)
     int retval = 0, status;
     pid_t pidd;
 
-    retval = check_builtins(d);
+    retval = builtins_list(d);
     if (retval != -1)
         return (retval);
 
