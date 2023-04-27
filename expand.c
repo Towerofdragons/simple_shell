@@ -86,11 +86,11 @@ int buffer_add(char *buff, char *str_to_add)
     int length;
     int i;
 
-	length = str_length(buff);
+	length = str_length(buffer);
 	for (i = 0; str_to_add[i]; i++)
 	{
-		buff[length + i] = str_to_add[i];
+		buffer[length + i] = str_to_add[i];
 	}
-	buff[length + i] = '\0';
+	buffer[length + i] = '\0';
 	return (length + i);
 }
