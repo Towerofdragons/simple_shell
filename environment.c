@@ -1,6 +1,6 @@
 #include "main.h"
 
-int env_cmd(program_data *data)
+int builtin_env(program_data *data)
 {
     int i;
     char cpname[50] = {'\0'};
@@ -40,7 +40,7 @@ int env_cmd(program_data *data)
     return (0);
 }
 
-int set_env_cmd(program_data *d)
+int builtin_set_env(program_data *data)
 {
     if (d->tokens[1] == NULL || d->tokens[2] == NULL)
         return (0);
@@ -56,7 +56,7 @@ int set_env_cmd(program_data *d)
     return (0);
 }
 
-int unset_env_cmd(program_data *d)
+int builtin_unset_env(program_data *data)
 {
     if (d->tokens[1] == NULL)
         return (0);
