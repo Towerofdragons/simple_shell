@@ -9,6 +9,7 @@ char *get_env_key(char *key, program_data *data)
     if (key == NULL || data->env_vars == NULL)
         return (NULL);
 
+    
     key_len = str_len(key);
 
     for (i = 0; data->env_vars[i]; i++)
