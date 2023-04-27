@@ -19,11 +19,11 @@ int builtins_list(program_data *data)
 		{"unsetenv", builtin_unset_env},
 		{NULL, NULL}
 	};
-	for (i = 0; x[i].builtin != NULL; i++)
+	for (i = 0; x[i].cmd_name != NULL; i++)
 	{
-		if (str_compare(x[i].builtin, data->command_name, 0))
+		if (str_compare(x[i].cmd_name, data->command_name, 0))
 		{
-			return (x[i].function(data));
+			return (x[i].func(data));
 		}
 
 	}
