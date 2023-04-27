@@ -1,6 +1,6 @@
 #include "main.h"
 
-int check_builtins(program_data *d);
+int check_builtins(char *full_path);
 
 int search_program(program_data *d)
 {
@@ -80,7 +80,7 @@ char **tokenize_path(program_data *d)
     return (tokens);
 }
 
-int check_builtins(program_data *d)
+int check_builtins(char *full_path)
 {
     struct stat sb;
 
