@@ -2,19 +2,19 @@
 
 int _print(char *stringval)
 {
-    return (write(STDOUT_FILENO, stringval, str_length(stringval)));
+    return (write(STDOUT_FILENO, stringval, str_len(stringval)));
 }
 
 int _printe(char *stringval)
 {
-    return (write(STDERR_FILENO, stringval, str_length(stringval)));
+    return (write(STDERR_FILENO, stringval, str_len(stringval)));
 }
 
 int _print_error(int errorcode, program_data *data)
 {
     char n_as_string[10] = {'\0'};
 
-    long_to_string((long) data->cmd_count, n_as_string, 10);
+    convert_long_to_str((long) data->cmd_count, n_as_string, 10);
 
     if (errorcode == 2 || errorcode == 3)
     {
