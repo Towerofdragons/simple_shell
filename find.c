@@ -11,7 +11,7 @@ int search_program(program_data *d)
         return (2);
 
     if (d->cmd_name[0] == '/' || d->cmd_name[0] == '.')
-        return (check_file(d->cmd_name));
+        return (check_builtins(d->cmd_name));
 
     free(d->tokens[0]);
     d->tokens[0] = str_cat(str_dup("/"), d->cmd_name);
