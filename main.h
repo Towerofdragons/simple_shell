@@ -93,6 +93,8 @@ int print_alias_value(program_data* data, char* alias_name);
 char* get_alias_value(program_data* data, char* alias_name);
 int set_alias_value(char* alias_str, program_data* data);
 
+int builtins_list(program_data *data);
+
 int builtin_exit(program_data *data);
 
 int builtin_cd(program_data *data);
