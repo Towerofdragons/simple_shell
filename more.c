@@ -52,7 +52,7 @@ int builtin_cd(program_data *data)
     return (0);
 }
 
-int set_work_dir(program_data *data, char *new_dir)
+int set_working_dir(program_data *data, char *new_dir)
 {
     char old_dir[128] = {0};
     int err_code = 0;
