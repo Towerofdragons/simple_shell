@@ -52,7 +52,7 @@ int str_cmp(char *string1, char *string2, int number)
 
     if (number == 0) /* infinite longitud */
     {
-        if (str_length(string1) != str_length(string2))
+        if (str_len(string1) != str_len(string2))
             return (0);
         for (iterator = 0; string1[iterator]; iterator++)
         {
@@ -80,11 +80,11 @@ char *str_cat(char *string1, char *string2)
 
 	if (string1 == NULL)
 		string1 = "";
-	length1 = str_length(string1);
+	length1 = str_len(string1);
 
 	if (string2 == NULL)
 		string2 = "";
-	length2 = str_length(string2);
+	length2 = str_len(string2);
 
 	result = malloc(sizeof(char) * (length1 + length2 + 1));
 	if (result == NULL)
@@ -119,7 +119,7 @@ char *str_cat(char *string1, char *string2)
  */
 void reverse_str(char *string)
 {
-    int i = 0, length = str_length(string) - 1;
+    int i = 0, length = str_len(string) - 1;
     char hold;
 
     while (i < length)
