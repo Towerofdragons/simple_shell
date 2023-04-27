@@ -1,16 +1,16 @@
 #include "main.h"
 
-int _print(char *stringval)
+int printstr(char *str)
 {
-    return (write(STDOUT_FILENO, stringval, str_len(stringval)));
+    return (write(STDOUT_FILENO, str, str_len(str)));
 }
 
-int _printe(char *stringval)
+int print_err_str(char *str)
 {
-    return (write(STDERR_FILENO, stringval, str_len(stringval)));
+    return (write(STDERR_FILENO, str, str_len(str)));
 }
 
-int _print_error(int errorcode, program_data *data)
+int print_error_msg(int err_code, program_data *data)
 {
     char n_as_string[10] = {'\0'};
 
@@ -18,35 +18,35 @@ int _print_error(int errorcode, program_data *data)
 
     if (errorcode == 2 || errorcode == 3)
     {
-        _printe(data->prog_name);
-        _printe(": ");
-        _printe(n_as_string);
-        _printe(": ");
-        _printe(data->tokens[0]);
+         print_err_str(data->prog_name);
+        print_err_str(": ");
+        print_err_str(n_as_string);
+        print_err_str(": ");
+        print_err_str(data->tokens[0]);
         if (errorcode == 2)
-            _printe(": Illegal number: ");
+            print_err_str(": Illegal number: ");
         else
-            _printe(": can't cd to ");
-        _printe(data->tokens[1]);
-        _printe("\n");
+            print_err_str(": can't cd to ");
+        print_err_str(data->tokens[1]);
+        print_err_str("\n");
     }
     else if (errorcode == 127)
     {
-        _printe(data->prog_name);
-        _printe(": ");
-        _printe(n_as_string);
-        _printe(": ");
-        _printe(data->cmd_name);
-        _printe(": not found\n");
+        print_err_str(data->prog_name);
+        print_err_str(": ");
+        print_err_str(n_as_string);
+        print_err_str(": ");
+        print_err_str(data->cmd_name);
+        print_err_str(": not found\n");
     }
     else if (errorcode == 126)
     {
-        _printe(data->prog_name);
-        _printe(": ");
-        _printe(n_as_string);
-        _printe(": ");
-        _printe(data->cmd_name);
-        _printe(": Permission denied\n");
+        print_err_str(data->prog_name);
+        print_err_str(": ");
+        print_err_str(n_as_string);
+        print_err_str(": ");
+        print_err_str(data->cmd_name);
+        print_err_str(": Permission denied\n");
     }
     return (0);
 }
