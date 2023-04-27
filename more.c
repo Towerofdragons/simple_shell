@@ -1,6 +1,6 @@
 #include "main.h"
 
-int exit_cmd(program_data *data)
+int builtin_exit(program_data *data)
 {
     int i;
 
@@ -19,7 +19,7 @@ int exit_cmd(program_data *data)
     exit(errno);
 }
 
-int cd_cmd(program_data *data)
+int builtin_cd(program_data *data)
 {
     char *dir_home = get_env_key("HOME", data), *dir_old = NULL;
     char old_dir[128] = {0};
@@ -52,7 +52,7 @@ int cd_cmd(program_data *data)
     return (0);
 }
 
-int set_working_dir(program_data *data, char *new_dir)
+int set_work_directory(program_data *data, char *new_dir)
 {
     char old_dir[128] = {0};
     int err_code = 0;
@@ -73,7 +73,7 @@ int set_working_dir(program_data *data, char *new_dir)
     return (0);
 }
 
-int help_cmd(program_data *data)
+int builtin_help(program_data *data)
 {
     int i, length = 0;
     char *messages[6] = {NULL};
@@ -111,7 +111,7 @@ int help_cmd(program_data *data)
     return (0);
 }
 
-int alias_cmd(program_data *data)
+int builtin_alias(program_data *data);
 {
     int i = 0;
 
