@@ -16,7 +16,7 @@ int print_error_msg(int err_code, program_data *data)
 
     convert_long_to_str((long) data->cmd_count, n_as_string, 10);
 
-    if (errorcode == 2 || errorcode == 3)
+    if (err_code == 2 || err_code == 3)
     {
          print_err_str(data->prog_name);
         print_err_str(": ");
@@ -30,7 +30,7 @@ int print_error_msg(int err_code, program_data *data)
         print_err_str(data->tokens[1]);
         print_err_str("\n");
     }
-    else if (errorcode == 127)
+    else if (err_code == 127)
     {
         print_err_str(data->prog_name);
         print_err_str(": ");
@@ -39,7 +39,7 @@ int print_error_msg(int err_code, program_data *data)
         print_err_str(data->cmd_name);
         print_err_str(": not found\n");
     }
-    else if (errorcode == 126)
+    else if (err_code == 126)
     {
         print_err_str(data->prog_name);
         print_err_str(": ");
