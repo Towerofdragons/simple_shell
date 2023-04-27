@@ -9,7 +9,7 @@
 int builtins_list(program_data *data)
 {
 	int i;
-	builtins_cmds x[] = {
+	builtin_cmds x[] = {
 		{"exit", builtin_exit},
 		{"help", builtin_help},
 		{"cd", builtin_cd},
