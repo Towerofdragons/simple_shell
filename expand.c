@@ -6,7 +6,7 @@
  *
  * Return: nothing, but sets errno.
  */
-void expand_variables(program_data *data)
+void expand_vars(program_data *data)
 {
 	int i, j;
 	char line[BUFFER_SIZE] = {0}, expansion[BUFFER_SIZE] = {'\0'}, *temp;
