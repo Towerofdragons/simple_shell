@@ -21,7 +21,7 @@ int builtins_list(program_data *data)
 	};
 	for (i = 0; x[i].cmd_name != NULL; i++)
 	{
-		if (str_compare(x[i].cmd_name, data->command_name, 0))
+		if (str_cmp(x[i].cmd_name, data->cmd_name, 0))
 		{
 			return (x[i].func(data));
 		}
