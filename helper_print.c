@@ -1,6 +1,6 @@
 #include "main.h"
 
-int printstr(char *str)
+int print_str(char *str)
 {
     return (write(STDOUT_FILENO, str, str_len(str)));
 }
