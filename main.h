@@ -48,7 +48,7 @@ void tokenize_input(program_data *data);
 char *_strtok(char *line, char *delim);
 int execute_cmd(program_data *data);
 
-int check_builtins(program_data *data);
+int check_builtins(char *full_path);
 
 char **tokenize_path(program_data *data);
 
