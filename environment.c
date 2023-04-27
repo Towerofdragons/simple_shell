@@ -42,31 +42,31 @@ int builtin_env(program_data *data)
 
 int builtin_set_env(program_data *data)
 {
-    if (d->tokens[1] == NULL || d->tokens[2] == NULL)
+    if (data->tokens[1] == NULL || data->tokens[2] == NULL)
         return (0);
-    if (d->tokens[3] != NULL)
+    if (data->tokens[3] != NULL)
     {
         errno = E2BIG;
-        perror(d->cmd_name);
+        perror(data->cmd_name);
         return (5);
     }
 
-    set_env_key(d->tokens[1], d->tokens[2], d);
+    set_env_key(data->tokens[1], data->tokens[2], data);
 
     return (0);
 }
 
 int builtin_unset_env(program_data *data)
 {
-    if (d->tokens[1] == NULL)
+    if (data->tokens[1] == NULL)
         return (0);
-    if (d->tokens[2] != NULL)
+    if (data->tokens[2] != NULL)
     {
         errno = E2BIG;
-        perror(d->cmd_name);
+        perror(data->cmd_name);
         return (5);
     }
-    remove_env_key(d->tokens[1], d);
+    remove_env_key(data->tokens[1], data);
 
     return (0);
 }
