@@ -21,7 +21,7 @@ void free_all(program_data *d)
         if (close(d->file_desc))
             perror(d->prog_name);
     }
-    free_recurrent_data(d);
+    free_recur_data(d);
     free_pointer_array(d->env_vars);
     free_pointer_array(d->alias_arr);
 }
