@@ -28,7 +28,7 @@ int search_program(program_data *d)
     for (i = 0; dirs[i]; i++)
     {
         dirs[i] = str_cat(dirs[i], d->tokens[0]);
-        ret_code = check_file(dirs[i]);
+        ret_code = check_builtins(dirs[i]);
         if (ret_code == 0 || ret_code == 126)
         {
             errno = 0;
