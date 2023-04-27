@@ -111,7 +111,7 @@ int builtin_help(program_data *data)
     return (0);
 }
 
-int builtin_alias(program_data *data);
+int builtin_alias(program_data *data)
 {
     int i = 0;
 
