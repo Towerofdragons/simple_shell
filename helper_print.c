@@ -23,7 +23,7 @@ int print_error_msg(int err_code, program_data *data)
         print_err_str(n_as_string);
         print_err_str(": ");
         print_err_str(data->tokens[0]);
-        if (errorcode == 2)
+        if (err_code == 2)
             print_err_str(": Illegal number: ");
         else
             print_err_str(": can't cd to ");
