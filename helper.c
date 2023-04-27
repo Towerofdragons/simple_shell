@@ -1,6 +1,6 @@
 #include "main.h"
 
-void free_recurrent_data(program_data *d)
+void free_recur_data(program_data *d)
 {
     if (d->tokens)
         free_pointer_array(d->tokens);
@@ -14,7 +14,7 @@ void free_recurrent_data(program_data *d)
     d->tokens = NULL;
 }
 
-void free_all_data(program_data *d)
+void free_all(program_data *d)
 {
     if (d->file_desc != 0)
     {
