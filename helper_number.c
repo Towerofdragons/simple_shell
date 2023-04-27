@@ -1,6 +1,6 @@
 #include "main.h"
 
-void long_to_str(long number, char *string, int base)
+void convert_long_to_str(long number, char *string, int base)
 {
     int index = 0, is_negative = 0;
     long quotient = number;
