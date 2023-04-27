@@ -1,6 +1,6 @@
 #include "main.h"
 
-int str_length(char *str)
+int str_len(char *str)
 {
     int length = 0;
 
@@ -13,7 +13,7 @@ int str_length(char *str)
     return (--length);
 }
 
-char *str_duplicate(char *str)
+char *str_dup(char *str)
 {
     char *result;
     int len;
@@ -40,7 +40,7 @@ char *str_duplicate(char *str)
     return (result);
 }
 
-int str_compare(char *string1, char *string2, int number)
+int str_cmp(char *string1, char *string2, int number)
 {
     int iterator;
 
@@ -73,7 +73,7 @@ int str_compare(char *string1, char *string2, int number)
 }
 
 
-char *str_concat(char *string1, char *string2)
+char *str_cat(char *string1, char *string2)
 {
 	char *result;
 	int length1 = 0, length2 = 0;
@@ -117,7 +117,7 @@ char *str_concat(char *string1, char *string2)
  * @string: pointer to string.
  * Return: void.
  */
-void str_reverse(char *string)
+void reverse_str(char *string)
 {
     int i = 0, length = str_length(string) - 1;
     char hold;
